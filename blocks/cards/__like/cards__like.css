@@ -5,6 +5,8 @@
   width: 22px;
   min-height: 19px;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
 .cards__like:hover {
