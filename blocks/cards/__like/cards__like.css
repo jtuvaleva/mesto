@@ -1,7 +1,8 @@
 .cards__like{
   margin: 0;
   background-image: url('../../../images/like.svg');
-  object-position: center;
+  background-position: center;
+  background-size: contain;
   width: 22px;
   min-height: 19px;
   cursor: pointer;
