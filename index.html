@@ -18,11 +18,11 @@
 
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button type="button" class="profile__edtn-button"></button>
+        <button type="button" aria-label="edit-info" class="profile__edtn-button"></button>
         <p class = "profile__bio">Исследователь океана</p>
       </div>
 
-      <button type="button" class="profile__add-button">
+      <button type="button" aria-label="add-info" class="profile__add-button">
       </button>
 
     </section>
@@ -33,7 +33,7 @@
           <img src="images/kirill-pershin-1088404-unsplash.png" alt="Архыз" class="cards__image">
           <div class="cards__elements">
             <h2 class="cards__text">Карачаевск</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" aria-label="photo-like" class="cards__like"></button>
           </div>
           
         </li>
@@ -42,7 +42,7 @@
           <img src="images/kirill-pershin-1404681-unsplash.png" alt="Эльбрус" class="cards__image">
           <div class="cards__elements">
             <h2 class="cards__text">Эльбрус</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" aria-label="photo-like" class="cards__like"></button>
           </div>
         </li>
 
@@ -51,7 +51,7 @@
 
           <div class="cards__elements">
             <h2 class="cards__text">Домбай</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" aria-label="photo-like" class="cards__like"></button>
           </div>
         </li>
 
@@ -59,7 +59,7 @@
           <img src="images/tulskaya_oblast.png" alt="Тульская область" class="cards__image">
           <div class="cards__elements">
             <h2 class="cards__text">Тульская область</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" aria-label="photo-like" class="cards__like"></button>
           </div>
           
         </li>
@@ -68,7 +68,7 @@
           <img src="images/leningradskaya_oblast.png" alt="Ленинградская область" class="cards__image">
           <div class="cards__elements">
             <h2 class="cards__text">Ленинградская область</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" aria-label="photo-like" class="cards__like"></button>
           </div>
         </li>
 
@@ -76,7 +76,7 @@
           <img src="images/arhyz.png" alt="Архыз" class="cards__image">
           <div class="cards__elements">
             <h2 class="cards__text">Архыз</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" aria-label="photo-like" class="cards__like"></button>
           </div>
         </li>
       </ul>
@@ -89,12 +89,12 @@
 
   <div class="popup">
     <div class="popup__container">
-      <button type="button" class="popup__close-btn"></button>
+      <button type="button" class="popup__close-btn" aria-label="Close"></button>
       <h3 class="popup__name">Редактировать профиль</h3>
       <form class="popup__form" name="profile-form">
         <input type="text" placeholder="Имя" name="profile-name" class="popup__form-input popup__form-input_field_name">
         <input type="text" placeholder="О Себе" name="profile-bio" class="popup__form-input popup__form-input_field_bio">
-        <button type="submit" class="popup__submit-btn">Сохранить</button>
+        <button type="submit" aria-label="save-info" class="popup__submit-btn">Сохранить</button>
       </form>
     </div>
   </div>
