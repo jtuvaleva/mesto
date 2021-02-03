@@ -1,0 +1,17 @@
+.profile {
+  width: 68.75%;
+  margin: 0 auto;
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+@media all and (max-width: 767px) {
+  .profile {
+    width: calc(100% - 38px);
+    min-width: 282px;
+  }
+}

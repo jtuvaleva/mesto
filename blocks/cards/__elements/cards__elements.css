@@ -1,0 +1,10 @@
+.cards__elements {
+  margin: 0;
+  padding-left: 21px;
+  padding-top: 25px;
+  padding-bottom: 31px;
+  padding-right: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

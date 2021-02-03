@@ -1,0 +1,14 @@
+.footer {
+  width: 68.75%;
+  margin: 0 auto;
+  padding-top: 67px;
+  padding-bottom: 60px;
+  display: flex;
+}
+
+@media all and (max-width: 767px) {
+  .footer {
+    width: calc(100% - 38px);
+    min-width: 282px;
+  }
+}

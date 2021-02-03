@@ -1,0 +1,14 @@
+.photo-grid {
+  width: 68.75%;
+  margin: 0 auto;
+  padding-top: 47.25px;
+}
+
+@media all and (max-width: 767px) {
+  .photo-grid {
+    width: calc(100% - 38px);
+  }
+}
+
+
+

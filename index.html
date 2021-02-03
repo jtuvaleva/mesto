@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Место</title>
+  <link rel="stylesheet" href="pages/index.css">
+</head>
+
+<body class="page">
+  <header class="header">
+    <div class="header__logo"></div>
+  </header>
+
+  <main class="content">
+    <section class="profile">
+      <img src="images/avatar_image.png" alt="Фото профиля" class="profile__photo">
+
+      <div class="profile__info">
+        <h4 class="profile__name">Жак-Ив Кусто</h4>
+        <button class="profile__edtn-button"></button>
+        <p class = "profile__bio">Исследователь океана</p>
+      </div>
+
+      <button class="profile__add-button">
+      </button>
+
+    </section>
+
+    <section class="photo-grid">
+      <ul class="cards">
+        <li class="cards__item">
+          <img src="images/kirill-pershin-1088404-unsplash.png" alt="Архыз" class="cards__image">
+          <div class="cards__elements">
+            <p class="cards__text">Карачаевск</p>
+            <div class="cards__like"></div>
+          </div>
+          
+        </li>
+
+        <li class="cards__item">
+          <img src="images/kirill-pershin-1404681-unsplash.png" alt="Эльбрус" class="cards__image">
+          <div class="cards__elements">
+            <p class="cards__text">Эльбрус</p>
+            <div class="cards__like"></div>
+          </div>
+        </li>
+
+        <li class="cards__item">
+          <img src="images/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="cards__image">
+
+          <div class="cards__elements">
+            <p class="cards__text">Домбай</p>
+            <div class="cards__like"></div>
+          </div>
+        </li>
+
+        <li class="cards__item">
+          <img src="images/tulskaya_oblast.png" alt="Тульская область" class="cards__image">
+          <div class="cards__elements">
+            <p class="cards__text">Тульская область</p>
+            <div class="cards__like"></div>
+          </div>
+          
+        </li>
+
+        <li class="cards__item">
+          <img src="images/leningradskaya_oblast.png" alt="Ленинградская область" class="cards__image">
+          <div class="cards__elements">
+            <p class="cards__text">Ленинградская область</p>
+            <div class="cards__like"></div>
+          </div>
+        </li>
+
+        <li class="cards__item">
+          <img src="images/arhyz.png" alt="Архыз" class="cards__image">
+          <div class="cards__elements">
+            <p class="cards__text">Архыз</p>
+            <div class="cards__like"></div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__author">&copy;2020. Юлия Тувалева</p>
+  </footer>
+
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close-btn"></button>
+      <p class="popup__name">Редактировать профиль</p>
+      <form class="popup__form">
+        <input type="text" placeholder="Имя" class="popup__form-input popup__form-input_field_name" value="Жак-Ив Кусто">
+        <input type="text" placeholder="О Себе" class="popup__form-input popup__form-input_field_bio" value="Исследователь океана">
+        <button class="popup__submit-btn">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/scripts/script.js"></script>
+</body>
+</html>
