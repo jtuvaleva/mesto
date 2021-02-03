@@ -17,12 +17,12 @@
       <img src="images/avatar_image.png" alt="Фото профиля" class="profile__photo">
 
       <div class="profile__info">
-        <h4 class="profile__name">Жак-Ив Кусто</h4>
-        <button class="profile__edtn-button"></button>
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button type="button" class="profile__edtn-button"></button>
         <p class = "profile__bio">Исследователь океана</p>
       </div>
 
-      <button class="profile__add-button">
+      <button type="button" class="profile__add-button">
       </button>
 
     </section>
@@ -32,8 +32,8 @@
         <li class="cards__item">
           <img src="images/kirill-pershin-1088404-unsplash.png" alt="Архыз" class="cards__image">
           <div class="cards__elements">
-            <p class="cards__text">Карачаевск</p>
-            <div class="cards__like"></div>
+            <h2 class="cards__text">Карачаевск</h2>
+            <button type="button" class="cards__like"></button>
           </div>
           
         </li>
@@ -41,8 +41,8 @@
         <li class="cards__item">
           <img src="images/kirill-pershin-1404681-unsplash.png" alt="Эльбрус" class="cards__image">
           <div class="cards__elements">
-            <p class="cards__text">Эльбрус</p>
-            <div class="cards__like"></div>
+            <h2 class="cards__text">Эльбрус</h2>
+            <button type="button" class="cards__like"></button>
           </div>
         </li>
 
@@ -50,16 +50,16 @@
           <img src="images/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="cards__image">
 
           <div class="cards__elements">
-            <p class="cards__text">Домбай</p>
-            <div class="cards__like"></div>
+            <h2 class="cards__text">Домбай</h2>
+            <button type="button" class="cards__like"></button>
           </div>
         </li>
 
         <li class="cards__item">
           <img src="images/tulskaya_oblast.png" alt="Тульская область" class="cards__image">
           <div class="cards__elements">
-            <p class="cards__text">Тульская область</p>
-            <div class="cards__like"></div>
+            <h2 class="cards__text">Тульская область</h2>
+            <button type="button" class="cards__like"></button>
           </div>
           
         </li>
@@ -67,16 +67,16 @@
         <li class="cards__item">
           <img src="images/leningradskaya_oblast.png" alt="Ленинградская область" class="cards__image">
           <div class="cards__elements">
-            <p class="cards__text">Ленинградская область</p>
-            <div class="cards__like"></div>
+            <h2 class="cards__text">Ленинградская область</h2>
+            <button type="button" class="cards__like"></button>
           </div>
         </li>
 
         <li class="cards__item">
           <img src="images/arhyz.png" alt="Архыз" class="cards__image">
           <div class="cards__elements">
-            <p class="cards__text">Архыз</p>
-            <div class="cards__like"></div>
+            <h2 class="cards__text">Архыз</h2>
+            <button type="button" class="cards__like"></button>
           </div>
         </li>
       </ul>
@@ -89,12 +89,12 @@
 
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__close-btn"></button>
-      <p class="popup__name">Редактировать профиль</p>
-      <form class="popup__form">
-        <input type="text" placeholder="Имя" class="popup__form-input popup__form-input_field_name" value="Жак-Ив Кусто">
-        <input type="text" placeholder="О Себе" class="popup__form-input popup__form-input_field_bio" value="Исследователь океана">
-        <button class="popup__submit-btn">Сохранить</button>
+      <button type="button" class="popup__close-btn"></button>
+      <h3 class="popup__name">Редактировать профиль</h3>
+      <form class="popup__form" name="profile-form">
+        <input type="text" placeholder="Имя" name="profile-name" class="popup__form-input popup__form-input_field_name">
+        <input type="text" placeholder="О Себе" name="profile-bio" class="popup__form-input popup__form-input_field_bio">
+        <button type="submit" class="popup__submit-btn">Сохранить</button>
       </form>
     </div>
   </div>

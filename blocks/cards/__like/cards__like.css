@@ -4,6 +4,7 @@
   object-position: center;
   width: 22px;
   min-height: 19px;
+  cursor: pointer;
 }
 
 .cards__like:hover {

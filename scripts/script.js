@@ -11,30 +11,26 @@ let nameInput = document.querySelector('.popup__form-input_field_name');
 let jobInput = document.querySelector('.popup__form-input_field_bio');
 
 
-function openForm() {
+function openPopup() {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileBio.textContent;
     popup.classList.add('popup_opened');
 }
 
-function closeForm() {
+function closePopup() {
     popup.classList.remove('popup_opened');
 }
 
 
-editBtn.addEventListener('click', openForm); 
-closeBtn.addEventListener('click', closeForm); 
+editBtn.addEventListener('click', openPopup); 
+closeBtn.addEventListener('click', closePopup); 
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function formSubmitHandler (evt) {
+function handleSubmitForm (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     // Так мы можем определить свою логику отправки.
     // О том, как это делать, расскажем позже.
-
-    console.log(nameInput.value);
-    console.log(jobInput.value);
-
-    
-
                   
     // Получите значение полей jobInput и nameInput из свойства value
 
@@ -43,9 +39,9 @@ function formSubmitHandler (evt) {
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInput.value;
     profileBio.textContent = jobInput.value;
-    popup.classList.remove('popup_opened');
+    closePopup();
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', handleSubmitForm); 
