@@ -10,10 +10,10 @@
   right: -40px;
   cursor: pointer;
   transform: rotate(45deg);
+  transition: opacity 1.5s ease-out;
 }
 
 .popup__close-btn:hover {
-  transition: opacity 1.5s ease-out;
   opacity: 0.6;
 }
 

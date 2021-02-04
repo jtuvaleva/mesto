@@ -9,10 +9,10 @@
   box-sizing: border-box;
   border-radius: 2px;
   cursor: pointer;
+  transition: opacity 1.5s ease-out;
 }
 
 .profile__add-button:hover {
-  transition: opacity 1.5s ease-out;
   opacity: 0.6;
 }
 
