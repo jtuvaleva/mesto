@@ -48,10 +48,6 @@
 /*Popup input form*/
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__form-input/popup__form-input.css);
-@import url(../blocks/popup/__form-input/_field/popup__form-input_field_name.css);
-@import url(../blocks/popup/__form-input/_field/popup__form-input_field_bio.css);
-@import url(../blocks/popup/__form-input/_field/popup__form-input_field_image-name.css);
-@import url(../blocks/popup/__form-input/_field/popup__form-input_field_image-src.css);
 
 /*Popup close button*/
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
