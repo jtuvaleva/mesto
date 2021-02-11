@@ -1,0 +1,10 @@
+.popup__image-content {
+    display: block;
+    background-size: cover;
+    background-position: center;
+    max-width: 75vw;
+    max-height: 75vh;
+    min-height: 100px;
+    margin: 0;
+    padding: 0;
+}

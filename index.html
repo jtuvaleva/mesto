@@ -29,56 +29,6 @@
 
     <section class="photo-grid">
       <ul class="cards">
-        <li class="cards__item">
-          <img src="images/kirill-pershin-1088404-unsplash.png" alt="Архыз" class="cards__image">
-          <div class="cards__elements">
-            <h2 class="cards__text">Карачаевск</h2>
-            <button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-          </div>
-          
-        </li>
-
-        <li class="cards__item">
-          <img src="images/kirill-pershin-1404681-unsplash.png" alt="Эльбрус" class="cards__image">
-          <div class="cards__elements">
-            <h2 class="cards__text">Эльбрус</h2>
-            <button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-          </div>
-        </li>
-
-        <li class="cards__item">
-          <img src="images/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="cards__image">
-
-          <div class="cards__elements">
-            <h2 class="cards__text">Домбай</h2>
-            <button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-          </div>
-        </li>
-
-        <li class="cards__item">
-          <img src="images/tulskaya_oblast.png" alt="Тульская область" class="cards__image">
-          <div class="cards__elements">
-            <h2 class="cards__text">Тульская область</h2>
-            <button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-          </div>
-          
-        </li>
-
-        <li class="cards__item">
-          <img src="images/leningradskaya_oblast.png" alt="Ленинградская область" class="cards__image">
-          <div class="cards__elements">
-            <h2 class="cards__text">Ленинградская область</h2>
-            <button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-          </div>
-        </li>
-
-        <li class="cards__item">
-          <img src="images/arhyz.png" alt="Архыз" class="cards__image">
-          <div class="cards__elements">
-            <h2 class="cards__text">Архыз</h2>
-            <button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-          </div>
-        </li>
       </ul>
     </section>
   </main>
@@ -87,9 +37,9 @@
     <p class="footer__author">&copy;2020. Юлия Тувалева</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_type_profile">
     <div class="popup__container">
-      <button type="button" class="popup__close-btn" aria-label="кнопка-закрыть"></button>
+      <button type="button" class="popup__close-btn popup__close-btn_area_profile" aria-label="кнопка-закрыть"></button>
       <h3 class="popup__name">Редактировать профиль</h3>
       <form class="popup__form" name="profile-form">
         <input type="text" placeholder="Имя" name="profile-name" class="popup__form-input popup__form-input_field_name">
@@ -98,6 +48,40 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup_type_cards">
+    <div class="popup__container">
+      <button type="button" class="popup__close-btn popup__close-btn_area_card" aria-label="кнопка-закрыть"></button>
+      <h3 class="popup__name">Новое место</h3>
+      <form class="popup__form" name="card-form">
+        <input type="text" placeholder="Название" name="cards-name" class="popup__form-input popup__form-input_field_image-name">
+        <input type="text" placeholder="Ссылка на картинку" name="cards-link" class="popup__form-input popup__form-input_field_image-src">
+        <button type="submit" aria-label="кнопка-сохранить" class="popup__submit-btn">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_image">
+    <div class="popup__image-container">
+      <button type="button" class="popup__close-btn popup__close-btn_area_image" aria-label="кнопка-закрыть"></button>
+      <figure class="popup__image">
+        <img src="" alt="" class="popup__image-content">
+        <figcaption class="popup__image-caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <template id="card-template">
+    <li class="cards__item">
+      <button type="button" aria-label="кнопка-удалить" class="cards__delete-btn"></button>
+      <img alt="image description" class="cards__image">
+      <div class="cards__elements">
+        
+        <h2 class="cards__text"></h2>
+        <button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
+      </div>
+    </li>
+  </template> 
 
   <script src="scripts/script.js"></script>
 </body>
