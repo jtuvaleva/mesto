@@ -6,6 +6,7 @@ const addBtn = document.querySelector('.profile__add-button');
 const closeProfile = document.querySelector('.popup__close-btn_area_profile');
 const closeCard = document.querySelector('.popup__close-btn_area_card');
 const closeImage = document.querySelector('.popup__close-btn_area_image');
+const popupOverlay = document.querySelector('.popup_opened');
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupCard = document.querySelector('.popup_type_cards');
 const popupImage = document.querySelector('.popup_type_image');
@@ -62,6 +63,14 @@ function openPopup(popupElement) {
 function closePopup(popupElement) {
     popupElement.classList.remove('popup_opened');
 }
+
+function closePopupWithEsc(key) {
+  const closeElement = document.querySelector('.popup_opened');
+  if (key === "Escape") {
+    closePopup(closeElement);
+  }
+};
+
 
 function openImage(name, link) {
   openPopup(popupImage);
@@ -138,8 +147,16 @@ closeCard.addEventListener('click', function () {
 
 
 closeImage.addEventListener('click', function () {
-  closePopup(popupImage);
+    closePopup(popupImage);
 }); 
+
+document.addEventListener('click', function(evt){
+    closePopup(evt.target);
+});
+
+document.addEventListener('keydown', function(evt) {
+    closePopupWithEsc(evt.key);
+});
 
 popupProfile.addEventListener('submit', handleSubmitProfileInfo); 
 
