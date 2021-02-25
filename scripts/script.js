@@ -12,71 +12,50 @@ const popupCard = document.querySelector('.popup_type_cards');
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageContent = popupImage.querySelector('.popup__image-content');
 const popupImageCaption = popupImage.querySelector('.popup__image-caption');
-const formElement = document.querySelectorAll('.popup__form');
 const nameInput = document.querySelector('.popup__form-input_field_name');
 const jobInput = document.querySelector('.popup__form-input_field_bio');
 const cardNameInput = document.querySelector('.popup__form-input_field_image-name');
 const cardLinkInput = document.querySelector('.popup__form-input_field_image-src');
+const saveBtn = popupCard.querySelector('.popup__submit-btn');
+const cardForm = document.forms['card-form'];
 
-
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://drive.google.com/uc?id=1mT1mQAerct9gJV6Elssbgj3oOJba-McZ',
-    },
-    {
-      name: 'Ленинградская область',
-      link: 'https://drive.google.com/uc?id=1dM1ldlEKFwQYmVUCNYJK-bkDg8pL0B3N'
-    }, 
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Тульская область',
-      link: 'https://drive.google.com/uc?id=1eIO2-RPpiU-86WLV-X1zWYvlMIWRW9t_'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+function closePopupWithEsc(evt) {
+    const closeElement = document.querySelector('.popup_opened');
+    if (evt.key === "Escape") {
+      closePopup(closeElement);
     }
-  ];
+};
 
-function loadInput(popupElement) {
-  if (popupElement === popupProfile) {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileBio.textContent;
-  } else {
-      cardNameInput.value = '';
-      cardLinkInput.value = '';
-  }
-}
+function closePopupWithOverlay(evt) {
+    closePopup(evt.target);
+};
 
 function openPopup(popupElement) {
-  popupElement.classList.add('popup_opened');
+    popupElement.classList.add('popup_opened');
+    popupElement.addEventListener('click', closePopupWithOverlay);
+    document.addEventListener('keydown', closePopupWithEsc);
 } 
 
 function closePopup(popupElement) {
     popupElement.classList.remove('popup_opened');
+    popupElement.removeEventListener('click', closePopupWithOverlay);
+    document.removeEventListener('keydown', closePopupWithEsc);
 }
 
-function closePopupWithEsc(key) {
-  const closeElement = document.querySelector('.popup_opened');
-  if (key === "Escape") {
-    closePopup(closeElement);
-  }
-};
-
-
 function openImage(name, link) {
-  openPopup(popupImage);
-  popupImageContent.src = link;
-  popupImageCaption.textContent = name;
-  popupImageContent.alt = name;
+    openPopup(popupImage);
+    popupImageContent.src = link;
+    popupImageCaption.textContent = name;
+    popupImageContent.alt = name;
+}
+
+function likeImage(evt) {
+    evt.target.classList.toggle('cards__like_active');
+}
+
+
+function deleteImage(evt) {
+    evt.target.parentElement.remove();
 }
 
 
@@ -85,6 +64,8 @@ function modifyCard(name, link) {
     const cardElement = cardTemplate.querySelector('.cards__item').cloneNode(true);
     const cardImage = cardElement.querySelector('.cards__image');
     const cardImageText = cardElement.querySelector('.cards__text');
+    const cardLikeButton = cardElement.querySelector('.cards__like');
+    const cardDeleteButton = cardElement.querySelector('.cards__delete-btn');
 
     cardImageText.textContent = name;
     cardImage.src = link;
@@ -92,17 +73,11 @@ function modifyCard(name, link) {
 
     cardContainer.prepend(cardElement);
 
-    cardElement.querySelector('.cards__image').addEventListener('click', () => openImage(name, link));
+    cardImage.addEventListener('click', () => openImage(name, link));
 
-    cardElement.querySelector('.cards__like').addEventListener('click', function (evt) {
-      const eventTarget = evt.target;
-      eventTarget.classList.toggle('cards__like_active');
-    }); 
+    cardLikeButton.addEventListener('click', likeImage); 
 
-    cardElement.querySelector('.cards__delete-btn').addEventListener('click', function(evt){
-      const eventTarget = evt.target;
-      eventTarget.parentElement.remove();
-    });
+    cardDeleteButton.addEventListener('click', deleteImage);
 
     return cardContainer;
 }
@@ -123,17 +98,20 @@ function handleSubmitCard (evt) {
 
 
 initialCards.forEach(function (item) {
-  modifyCard(item.name, item.link);
+    modifyCard(item.name, item.link);
 });
 
 editBtn.addEventListener('click', function () {
-    loadInput(popupProfile);
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileBio.textContent;
     openPopup(popupProfile);
 }); 
 
 addBtn.addEventListener('click', function(){
-    loadInput(popupCard);
+    cardForm.reset();
     openPopup(popupCard);
+    saveBtn.classList.add('popup__submit-btn_disabled');
+    saveBtn.setAttribute('disabled', true);
 });
 
 
@@ -150,13 +128,7 @@ closeImage.addEventListener('click', function () {
     closePopup(popupImage);
 }); 
 
-document.addEventListener('click', function(evt){
-    closePopup(evt.target);
-});
 
-document.addEventListener('keydown', function(evt) {
-    closePopupWithEsc(evt.key);
-});
 
 popupProfile.addEventListener('submit', handleSubmitProfileInfo); 
 
