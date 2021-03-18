@@ -6,6 +6,7 @@ const profileName = document.querySelector('.profile__name');
 const profileBio = document.querySelector('.profile__bio');
 const editBtn = document.querySelector('.profile__edtn-button');
 const addBtn = document.querySelector('.profile__add-button');
+const cardContainer = document.querySelector('.cards');
 const closeProfile = document.querySelector('.popup__close-btn_area_profile');
 const closeCard = document.querySelector('.popup__close-btn_area_card');
 const closeImage = document.querySelector('.popup__close-btn_area_image');
@@ -24,6 +25,10 @@ const profileForm = document.forms['profile-form'];
 
 const profileValidator = new FormValidator(validationSettings, profileForm);
 const cardVaidator = new FormValidator(validationSettings, cardForm);
+
+function renderCard(card) {
+  cardContainer.prepend(card);
+}
 
 function closePopupWithEsc(evt) {
     const closeElement = document.querySelector('.popup_opened');
@@ -68,7 +73,7 @@ function handleSubmitCard (evt) {
     const tmpObj = {'name': cardNameInput.value,
                     'link': cardLinkInput.value}
 
-    new Card(tmpObj, '.card-template', openImage).createCard();
+    renderCard(new Card(tmpObj, '.card-template', openImage).createCard());
     closePopup(popupCard);
 }
 
@@ -104,5 +109,5 @@ profileValidator.enableValidation();
 cardVaidator.enableValidation();
 
 initialCards.forEach(function (item) {
-    new Card(item, '.card-template', openImage).createCard();
+    renderCard(new Card(item, '.card-template', openImage).createCard());
 });

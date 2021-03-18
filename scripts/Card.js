@@ -7,7 +7,6 @@ export default class Card{
     }
 
     createCard(){
-        const $cardContainer = document.querySelector('.cards');
         this.$card =  document.querySelector(this.templateSelector)
                             .content
                             .querySelector('.cards__item')
@@ -22,7 +21,6 @@ export default class Card{
         this.$cardImage.alt = this._objectName;
 
         this._setEventListeners();
-        $cardContainer.prepend(this.$card);
         
         return this.$card;
     }
