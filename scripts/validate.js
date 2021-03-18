@@ -1,13 +1,4 @@
-const validationSettings = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-input',
-    submitButtonSelector: '.popup__submit-btn',
-    inactiveButtonClass: 'popup__submit-btn_disabled',
-    inputErrorClass: 'popup__form-input_type_error',
-    errorClass: 'popup__form-error_active'
-}; 
-
-const showInputError = (formElement, inputElement, errorMessage, validationSettings) => {
+ const showInputError = (formElement, inputElement, errorMessage, validationSettings) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(validationSettings.inputErrorClass);
     errorElement.textContent = errorMessage;
@@ -61,7 +52,7 @@ const setEventListeners = (formElement, validationSettings) => {
 
 const enableValidation = (validationSettings) => {
     const formList = Array.from(document.querySelectorAll(validationSettings.formSelector));
-
+    
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', function (evt) {
             evt.preventDefault();
@@ -70,6 +61,3 @@ const enableValidation = (validationSettings) => {
         setEventListeners(formElement, validationSettings);
     });
 };
-
-enableValidation(validationSettings);
-  
