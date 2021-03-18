@@ -1,6 +1,7 @@
 import {initialCards, validationSettings} from './constant.js'
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
+
 const profileName = document.querySelector('.profile__name');
 const profileBio = document.querySelector('.profile__bio');
 const editBtn = document.querySelector('.profile__edtn-button');
@@ -101,7 +102,6 @@ popupCard.addEventListener('submit', handleSubmitCard);
 
 profileValidator.enableValidation();
 cardVaidator.enableValidation();
-
 
 initialCards.forEach(function (item) {
     new Card(item, '.card-template', openImage).createCard();
