@@ -1,9 +1,11 @@
+import {popupImage} from "../utils/constant.js"
+
 export default class Card{
-    constructor(obj, templateSelector, openImageFunc){
+    constructor(obj, templateSelector, handleCardClick){
         this.templateSelector = templateSelector;
         this._objectName = obj['name'];
         this._objectLink = obj['link'];
-        this._openPopupImage = openImageFunc;
+        this._handleCardClick = handleCardClick;
     }
 
     createCard(){
@@ -42,8 +44,8 @@ export default class Card{
             this._deleteImage();
         })
 
-        this.$cardImage.addEventListener('click', ()=>{
-            this._openPopupImage(this._objectName, this._objectLink);
+        this.$cardImage.addEventListener('click', ()=> {
+            this._handleCardClick(popupImage, this.$cardImage);
         })
     } 
 }
