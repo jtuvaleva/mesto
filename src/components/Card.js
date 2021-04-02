@@ -1,7 +1,5 @@
-import {popupImage} from "../utils/constant.js"
-
 export default class Card{
-    constructor(obj, templateSelector, handleCardClick){
+    constructor({obj, handleCardClick}, templateSelector){
         this.templateSelector = templateSelector;
         this._objectName = obj['name'];
         this._objectLink = obj['link'];
@@ -9,7 +7,7 @@ export default class Card{
     }
 
     createCard(){
-        this.$card =  document.querySelector(this.templateSelector)
+        this.$card = document.querySelector(this.templateSelector)
                             .content
                             .querySelector('.cards__item')
                             .cloneNode(true);
@@ -45,8 +43,7 @@ export default class Card{
         })
 
         this.$cardImage.addEventListener('click', ()=> {
-            this._handleCardClick(popupImage, this.$cardImage);
+            this._handleCardClick(this._objectName, this._objectLink);
         })
     } 
 }
-
