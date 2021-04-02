@@ -67,7 +67,7 @@ editBtn.addEventListener('click', ()=>{
 
 addBtn.addEventListener('click', function(){
     popupCard.open();
-    cardValidator.resetForm();
+    cardValidator.disableButton();
 });
 
 cardList.renderItem();

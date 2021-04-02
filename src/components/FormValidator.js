@@ -13,7 +13,7 @@ export default class FormValidator {
         this._setEventListeners();
     }
 
-    resetForm() {
+    disableButton() {
         this.$buttonElement.setAttribute('disabled', true);
         this.$buttonElement.classList.add(this._inactiveButtonClass);
     }
