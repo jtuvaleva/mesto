@@ -1,0 +1,11 @@
+.profile__photo-area{
+    position:relative;
+    max-height: 120px;
+    width: 120px;
+    height: 120px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+
