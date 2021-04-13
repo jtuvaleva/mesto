@@ -25,7 +25,6 @@ export const initialCards = [
     }
 ];
 
-
 export const validationSettings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
@@ -38,11 +37,10 @@ export const validationSettings = {
 export const editBtn = document.querySelector('.profile__edtn-button_info');
 export const editBtnPhoto = document.querySelector('.profile__edtn-button_photo');
 export const addBtn = document.querySelector('.profile__add-button');
-/*const popupCard = document.querySelector('.popup_type_cards');
-export const saveBtn = popupCard.querySelector('.popup__submit-btn'); */
 export const profilePhoto = document.querySelector('.profile__photo');
 export const nameInput = document.querySelector('.popup__form-input_field_name');
 export const jobInput = document.querySelector('.popup__form-input_field_bio');
 export const cardForm = document.forms['card-form'];
 export const profileForm = document.forms['profile-form'];
+export const avatarForm = document.forms['avatar-form'];
 export const cardContainer = '.cards';

@@ -14,8 +14,8 @@ export default class FormValidator {
     }
 
     disableButton() {
-        this.$buttonElement.setAttribute('disabled', true);
-        this.$buttonElement.classList.add(this._inactiveButtonClass);
+        this._buttonElement.setAttribute('disabled', true);
+        this._buttonElement.classList.add(this._inactiveButtonClass);
     }
 
     _showInputError(inputElement, errorMessage) {
@@ -43,18 +43,18 @@ export default class FormValidator {
     _toggleButtonState() {
         const hasInvalidInput = this._inputList.some((inputElement) => !inputElement.validity.valid);
         if (hasInvalidInput) {
-            this.$buttonElement.setAttribute('disabled', true);
-            this.$buttonElement.classList.add(this._inactiveButtonClass);
+            this._buttonElement.setAttribute('disabled', true);
+            this._buttonElement.classList.add(this._inactiveButtonClass);
             
         } else {
-            this.$buttonElement.removeAttribute('disabled');
-            this.$buttonElement.classList.remove(this._inactiveButtonClass);
+            this._buttonElement.removeAttribute('disabled');
+            this._buttonElement.classList.remove(this._inactiveButtonClass);
             
         }
     }
 
     _setEventListeners() {
-        this.$buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
 
         this._formElement.addEventListener('reset', () => {

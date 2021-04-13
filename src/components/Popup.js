@@ -13,13 +13,20 @@ export default class Popup {
 
     open(){
         this._popupElement.classList.add('popup_opened');
-        this.setEventListeners();
         document.addEventListener('keydown', this._handleEscClose);
     }
 
     close(){
         this._popupElement.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose);
+    }
+
+    renderLoading(isLoading) {
+        if (isLoading) {
+            this._submitBtn.textContent = "Сохранение...";
+        } else {
+            this._submitBtn.textContent = this._submitBtn.value;
+        }
     }
 
     setEventListeners(){

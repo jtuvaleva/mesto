@@ -61,10 +61,11 @@ export default class Card{
     }
 
     displayLikeNumber(result) {
-        this.$cardLikeNumber.textContent = result
+        this.$cardLikeNumber.textContent = result['likes'].length
         if(result <= 0) {
             this.$cardLikeNumber.textContent = "0";
         }
+        this.likeImage();
     }
 
     deleteImage() {

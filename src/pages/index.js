@@ -1,7 +1,7 @@
 import './index.css';
 
 import {validationSettings,
-        profilePhoto, 
+        avatarForm,
         profileForm, cardForm, 
         editBtn, editBtnPhoto,
         addBtn,
@@ -12,13 +12,15 @@ import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
+import PopupWithFormConfirmation from '../components/PopupWithConfirmation.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
 
+
 const profileValidator = new FormValidator(validationSettings, profileForm);
 const cardValidator = new FormValidator(validationSettings, cardForm);
+const profilePhotoVaidator = new FormValidator(validationSettings, avatarForm);
 
-const popupImage = new PopupWithImage('.popup_type_image');
 
 const api = new Api({
             address: 'https://mesto.nomoreparties.co/v1',
@@ -31,65 +33,32 @@ const userBio = new UserInfo({userSelector:'.profile__name',
                              avatarSelector: '.profile__photo'});
 
 let ownerId;
-let likeCounts;
 
-api.getProfileInfo()
-  .then(profileData => {
-      userBio.setUserInfo(profileData);
-      ownerId = userBio.getUserInfo().ownerId;
+Promise.all(
+  [
+    api.getProfileInfo(),
+    api.getInitialCards(),
+  ]
+)
+  .then( ([profileData, cardsData]) => {
+    userBio.setUserInfo(profileData);
+    ownerId = userBio.getUserInfo().ownerId;
+    cardList.renderItem(cardsData);
   })
-  .catch(err => console.log(err));
+  .catch( (error) => {
+    console.log(error);
+  });
+           
+const popupImage = new PopupWithImage('.popup_type_image');
 
-
-const createNewCard = (item) => {
-    const card = new Card({obj: item,
-                          handleCardClick: (name, link) =>{
-                              popupImage.open(name, link);
-                          },
-                          handleCardDelete: () => {
-                            const confirmPopup = new PopupWithForm({popupSelector: '.popup_type_submit-delete',
-                                                    handleSubmitForm: () => {
-                                                          api.deleteCard(card.getId())
-                                                              .then(() => {
-                                                                  card.deleteImage();
-                                                              })
-                                                              .catch(error => console.log(error));
-                                                    }});
-                            
-                            confirmPopup.open();
-                        },
-                        handleLike: () => {
-                          if (card.getLikeStatus()) {
-                            api.cancelLikeCard(card.getId())
-                              .then((result) => {
-                                likeCounts = result["likes"].length;
-                                card.displayLikeNumber(likeCounts)
-                              })
-                              .catch(error => console.log(error));
-                            card.likeImage();
-                          } else {
-                            api.addLikeCard(card.getId())
-                              .then((result) => {
-                                likeCounts = result["likes"].length;
-                                card.displayLikeNumber(likeCounts);
-                              })
-                              .catch(error => console.log(error));
-                            card.likeImage();
-                          }
-                        }
-                      },
-                        '.card-template')
-    const cardElement = card.createCard(ownerId);
-    return cardElement;
-}
-
-const cardList = new Section({
-                renderer: (item) => {
-                    const cardElement = createNewCard(item);
-                    cardList.addItem(cardElement);
-                }},
-                cardContainer);
-
+const confirmPopup = new PopupWithFormConfirmation({popupSelector: '.popup_type_submit-delete',
+                          handleSubmitForm: (card, cardID) => {
+                                api.deleteCard(cardID)
+                                    .then(() => {
+                                        card.deleteImage();
+                                    })
+                                    .catch(error => console.log(error));
+}});
 
 const popupProfile = new PopupWithForm({popupSelector: '.popup_type_profile',   
                          handleSubmitForm: (formData)=>{
@@ -103,7 +72,6 @@ const popupProfile = new PopupWithForm({popupSelector: '.popup_type_profile',
                              }
 });
 
-
 const popupCard = new PopupWithForm({popupSelector: '.popup_type_cards',
                        handleSubmitForm: (formData)=>{
                           popupCard.renderLoading(true);
@@ -115,7 +83,6 @@ const popupCard = new PopupWithForm({popupSelector: '.popup_type_cards',
                             .finally(popupCard.renderLoading(false));
                        }
 });
-
 
 const popupProfilePhoto = new PopupWithForm({popupSelector: '.popup_type_user-photo',
                               handleSubmitForm: (formData)=>{
@@ -129,7 +96,52 @@ const popupProfilePhoto = new PopupWithForm({popupSelector: '.popup_type_user-ph
                               }
 });
 
+const createNewCard = (item) => {
+  const card = new Card({obj: item,
+                        handleCardClick: (name, link) =>{
+                            popupImage.open(name, link);
+                        },
+                        handleCardDelete: () => {
+                          confirmPopup.open(card, card.getId());
+                      },
+                      handleLike: () => {
+                        if (card.getLikeStatus()) {
+                          api.cancelLikeCard(card.getId())
+                            .then((result) => {
+                              card.displayLikeNumber(result)
+                            })
+                            .catch(error => console.log(error));
+                        } else {
+                          api.addLikeCard(card.getId())
+                            .then((result) => {
+                              card.displayLikeNumber(result);
+                            })
+                            .catch(error => console.log(error));
+                        }
+                      }
+                    },
+                      '.card-template')
+  const cardElement = card.createCard(ownerId);
+  return cardElement;
+}
+
+const cardList = new Section({
+                      renderer: (item) => {
+                          const cardElement = createNewCard(item);
+                          cardList.addItem(cardElement);
+                      }},
+                      cardContainer);
+
+//eventListeners for popups
+popupCard.setEventListeners();
+popupProfile.setEventListeners();
+popupImage.setEventListeners();
+popupProfilePhoto.setEventListeners();
+confirmPopup.setEventListeners();
+
+//set validation
 profileValidator.enableValidation();
+profilePhotoVaidator.enableValidation();
 cardValidator.enableValidation();
 
 
@@ -144,20 +156,6 @@ addBtn.addEventListener('click', function(){
     cardValidator.disableButton();
 });
 
-profilePhoto.addEventListener('mouseover', () => {
-  editBtnPhoto.setAttribute("style", "display: flex")
-})
-
 editBtnPhoto.addEventListener('click', () => {
   popupProfilePhoto.open();
 })
-
-profilePhoto.addEventListener('mouseout', () => {
-  editBtnPhoto.setAttribute("style", "display: none")
-})
-
-api.getInitialCards()
-  .then(initialCards => {
-    cardList.renderItem(initialCards);
-  })
-  .catch(err => console.log(err));
