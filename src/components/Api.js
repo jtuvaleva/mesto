@@ -28,7 +28,6 @@ export default class Api {
               if (response.ok) {
                   return response.json();
               }
-
               return Promise.reject(`Ошибка: ${response.status}`);
           })
     }
@@ -49,7 +48,6 @@ export default class Api {
                 if (response.ok) {
                     return response.json();
                 }
-
                 return Promise.reject(`Ошибка: ${response.status}`);
             })
     }
@@ -59,7 +57,7 @@ export default class Api {
             method: "POST",
             headers: {
                 authorization: this._token,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 name: cardData.name,
@@ -70,13 +68,10 @@ export default class Api {
                 if (response.ok) {
                     return response.json();
                 }
-
                 return Promise.reject(`Ошибка: ${response.status}`);
             })
         
     }
-
-    //DELETE https://mesto.nomoreparties.co/v1/cohortId/cards/cardId 
 
     deleteCard(cardId) {
         return fetch(`${this._address}/${this._cohortId}/cards/${cardId}`, {
@@ -146,7 +141,5 @@ export default class Api {
             })
 
     }
-
-
 
 }

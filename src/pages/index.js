@@ -47,7 +47,6 @@ const createNewCard = (item) => {
                               popupImage.open(name, link);
                           },
                           handleCardDelete: () => {
-                            console.log(card.getId());
                             const confirmPopup = new PopupWithForm({popupSelector: '.popup_type_submit-delete',
                                                     handleSubmitForm: () => {
                                                           api.deleteCard(card.getId())
@@ -108,9 +107,8 @@ const popupProfile = new PopupWithForm({popupSelector: '.popup_type_profile',
 const popupCard = new PopupWithForm({popupSelector: '.popup_type_cards',
                        handleSubmitForm: (formData)=>{
                           popupCard.renderLoading(true);
-                          api.addNewCard(formData)
+                          api.addNewCard({...formData})
                             .then(result => {
-                              console.log(result)
                               cardList.addItem(createNewCard(result))
                             })
                             .catch(err => console.log(err))
@@ -122,9 +120,8 @@ const popupCard = new PopupWithForm({popupSelector: '.popup_type_cards',
 const popupProfilePhoto = new PopupWithForm({popupSelector: '.popup_type_user-photo',
                               handleSubmitForm: (formData)=>{
                                   popupProfilePhoto.renderLoading(true);
-                                  api.editProfilePhoto(formData)
+                                  api.editProfilePhoto({...formData})
                                     .then(result => {
-                                      console.log(result);
                                       userBio.setUserInfo(result);
                                     })
                                     .catch(err => console.log(err))
@@ -134,11 +131,6 @@ const popupProfilePhoto = new PopupWithForm({popupSelector: '.popup_type_user-ph
 
 profileValidator.enableValidation();
 cardValidator.enableValidation();
-
-popupProfile.setEventListeners();
-popupCard.setEventListeners();
-popupImage.setEventListeners();
-popupProfilePhoto.setEventListeners();
 
 
 editBtn.addEventListener('click', ()=>{
@@ -152,12 +144,6 @@ addBtn.addEventListener('click', function(){
     cardValidator.disableButton();
 });
 
-api.getInitialCards()
-  .then(initialCards => {
-    cardList.renderItem(initialCards);
-  })
-  .catch(err => console.log(err));
-
 profilePhoto.addEventListener('mouseover', () => {
   editBtnPhoto.setAttribute("style", "display: flex")
 })
@@ -169,3 +155,9 @@ editBtnPhoto.addEventListener('click', () => {
 profilePhoto.addEventListener('mouseout', () => {
   editBtnPhoto.setAttribute("style", "display: none")
 })
+
+api.getInitialCards()
+  .then(initialCards => {
+    cardList.renderItem(initialCards);
+  })
+  .catch(err => console.log(err));

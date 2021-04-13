@@ -48,8 +48,6 @@ export default class Card{
         return ownerlikes.length > 0;
     }
 
-      
-
     getId() {
         return this._id;
     }
@@ -74,14 +72,9 @@ export default class Card{
     }
 
     _setEventListeners() { 
-        this.$cardLikeButton.addEventListener('click', ()=>{
-            this._handleLike();
-        })
+        this.$cardLikeButton.addEventListener('click', this._handleLike)
 
-        this.$cardDeleteButton.addEventListener('click', (evt)=>{
-            evt.preventDefault();
-            this._handleCardDelete();
-        })
+        this.$cardDeleteButton.addEventListener('click', this._handleCardDelete)
 
         this.$cardImage.addEventListener('click', ()=> {
             this._handleCardClick(this._objectName, this._objectLink);
